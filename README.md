@@ -1,5 +1,5 @@
 Tetris
-Eduardo Coguetto, Davi Chung e Rafael Chehab
+Eduardo Coguetto, Davi Chung e Rafael Chehab.
 O jogo consiste em um tetris com algumas adaptações. 
 O jogador recebe peças predefinidas de maneira aleatória, podendo receber a mesma peça consecutivamente. 
 Ele pontua formando fileiras horizontais com essas peças, e, no momento que isso ocorre, a fileira completada desaparece e os blocos nas fileiras acima descem uma fileira, fileiras embaixo não são afetadas.
