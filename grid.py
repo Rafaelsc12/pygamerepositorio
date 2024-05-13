@@ -2,9 +2,9 @@ import pygame
 
 class Grid:
     def __init__ (self):
-        self.linhas = 20
-        self.colunas = 10
-        self.cell_tamanho = 30 
+        self.linhas = 22
+        self.colunas = 11
+        self.cell_tamanho = 33
         self.grid = [[0 for i in range (self.colunas)]for j in range(self.linhas)]
         self.cores = self.cor_das_malhas()
 
