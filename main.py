@@ -1,32 +1,29 @@
-import sys
 import pygame
+import sys
 from grid import Grid
-azul = (60, 80, 140)
-pygame.init() #Inicia o game
+from blocks import *
 
-tela = pygame.display.set_mode((330, 660)) #Criação da resolução da janela
-pygame.display.set_caption("Tetris") #Nome da janela
+pygame.init() # Inicia o game
+dark_blue = (60, 80, 140)
 
-fps = pygame.time.Clock()
+screen = pygame.display.set_mode((300, 600)) # Criação da resolução da janela
+pygame.display.set_caption("Tetris") # Nome da janela
+
+clock = pygame.time.Clock()
               
 game_grid = Grid()
 
-game_grid.print_grid
-
-game = True 
-
-while game: #Loop do jogo
+block=BlocoL() #So para testar
+while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
     
-    #Cores da tela 
-    tela.fill(azul)
-
-    game_grid.pintura(tela)
+    # Cores da tela 
+    screen.fill(dark_blue)
+    game_grid.draw(screen)
+    block.draw(screen)
+    
     pygame.display.update()
-    fps.tick(60) #Determina 60 frames por segundo 
-
-
-
+    clock.tick(60) # Determina 60 frames por segundo
