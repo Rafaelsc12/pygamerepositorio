@@ -2,12 +2,13 @@ import pygame
 from cores import Cores
 
 class Grid:
-    def _init_(self):
+    def __init__(self):
         self.num_linhas = 20
         self.num_colunas = 10
         self.tamanho_celula = 30
         self.grade = [[0 for _ in range(self.num_colunas)] for _ in range(self.num_linhas)]
         self.cores = Cores.obter_cores_celulas()
+
 
     def imprimir_grade(self):
         for linha in range(self.num_linhas):
