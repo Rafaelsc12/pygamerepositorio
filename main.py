@@ -57,7 +57,7 @@ while True:
             if event.key == pygame.K_DOWN:
                 down_pressed = False
                 # Restaurar a velocidade de queda normal
-                fall_speed = 1000  # 200 milissegundos
+                fall_speed = 1000  # 1000 milissegundos
                 pygame.time.set_timer(GAME_UPDATE, fall_speed)
         if event.type == GAME_UPDATE and not game.game_over:
             # Se a seta para baixo está pressionada continuamente, mover para baixo
