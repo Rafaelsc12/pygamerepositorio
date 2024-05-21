@@ -30,12 +30,18 @@ fall_speed = 1000  # Vel inicial
 GAME_UPDATE = pygame.USEREVENT
 pygame.time.set_timer(GAME_UPDATE, fall_speed)
 
+# Carregue a imagem do background
+background_image = pygame.image.load(r"C:\Users\Desktop\OneDrive\Área de Trabalho\Background .png")
+
+tetris_font = pygame.font.Font(r"C:\Users\Desktop\OneDrive\Área de Trabalho\Tetris.ttf", 25)
+tetris2_font = pygame.font.Font(r"C:\Users\Desktop\OneDrive\Área de Trabalho\Tetris.ttf", 60)
+
 def draw_start_screen():
-    screen.fill(Cores.azul_escuro)
-    start_surface = title_font.render("Aperte qualquer tecla para iniciar!", True, Cores.branco)
-    nome_surface = extra_font.render("TETRIS", True, Cores.roxo)
-    screen.blit(start_surface, start_surface.get_rect(center=(250, 105)))
-    screen.blit(nome_surface, nome_surface.get_rect(center=(250, 310)) )
+    screen.blit(background_image, (0, 0))  # Desenhe a imagem do background
+    start_surface = tetris_font.render("Aperte qualquer tecla para iniciar!", True, Cores.branco)
+    nome_surface = tetris2_font.render("TETRIS", True, Cores.branco)
+    screen.blit(start_surface, start_surface.get_rect(center=(250, 210)))
+    screen.blit(nome_surface, nome_surface.get_rect(center=(250, 105)))
     pygame.display.update()
 
 def main_game_loop():
