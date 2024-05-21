@@ -17,6 +17,7 @@ class Game:
         self.lines_cleared = 0
         self.turn_complete = True
         self.can_hold = True
+        self.next_block_changed = False
 
     def hold_piece(self):
         if self.turn_complete and self.can_hold:
@@ -36,7 +37,7 @@ class Game:
                 self.stored_block.estado_rotacao = self.current_block.estado_rotacao
                 self.current_block = stored_copy
                 self.turn_complete = False
-            self.can_hold = False
+                self.can_hold = False
 
     def lock_block(self):
         cells = self.current_block.obter_posicoes_celulas()
@@ -44,6 +45,7 @@ class Game:
             self.grid.grade[posicao.linha][posicao.coluna] = self.current_block.id
         self.current_block = self.next_block
         self.next_block = self.get_random_block()
+        self.next_block_changed = True
         rows_cleared = self.grid.limpar_linhas_completas()
         if rows_cleared > 0:
             self.update_score(rows_cleared, 0)
@@ -80,17 +82,18 @@ class Game:
             self.current_block.mover(-1, 0)
             self.lock_block()
 
-
     def reset(self):
         self.grid.resetar()
         self.blocks = [BlocoI(), BlocoJ(), BlocoL(), BlocoO(), BlocoS(), BlocoT(), BlocoZ()]
         self.current_block = self.get_random_block()
         self.next_block = self.get_random_block()
+        self.stored_block = None  # Define a peça armazenada como None
         self.score = 0
         self.level = 1
         self.lines_cleared = 0
         self.game_over = False
         self.can_hold = True
+        self.next_block_changed = False
 
     def block_fits(self):
         cells = self.current_block.obter_posicoes_celulas()
@@ -114,16 +117,24 @@ class Game:
     def draw(self, screen, font):
         self.grid.desenhar(screen)
         self.current_block.desenhar(screen, 11, 11)
+        
+
+        if self.next_block_changed:
+            self.can_hold = True
+            self.next_block_changed = False
+        
         if self.next_block.id == 3:
             self.next_block.desenhar(screen, 255, 290)
         elif self.next_block.id == 4:
-            self.current_block.desenhar(screen, 255, 280)
+            self.next_block.desenhar(screen, 255, 280)
         else:
             self.next_block.desenhar(screen, 270, 270)
+        
+        # Desenha a peça armazenada (se houver)
         if self.stored_block is not None:
             if self.stored_block.id == 3:
-                self.stored_block.desenhar(screen, 255, 500)
+                self.stored_block.desenhar(screen, 253, 505)
             elif self.stored_block.id == 4:
-                self.stored_block.desenhar(screen, 260, 490)
+                self.stored_block.desenhar(screen, 255, 490)
             else:
-                self.stored_block.desenhar(screen, 260, 490)
+                self.stored_block.desenhar(screen, 270, 485)
