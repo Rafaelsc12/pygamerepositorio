@@ -25,7 +25,7 @@ game = Game()
 # Definindo uma variável para controlar se a seta para baixo está pressionada continuamente
 down_pressed = False
 
-fall_speed = 1000  # Vel inicial
+fall_speed = 300  # Vel inicial
 
 GAME_UPDATE = pygame.USEREVENT
 pygame.time.set_timer(GAME_UPDATE, fall_speed)
@@ -62,7 +62,7 @@ def main_game_loop():
                         game.move_right()
                     if event.key == pygame.K_DOWN:
                         down_pressed = True
-                        fall_speed = 150  # 50 milissegundos
+                        fall_speed -= 150  # 50 milissegundos
                         pygame.time.set_timer(GAME_UPDATE, fall_speed)
                     if event.key == pygame.K_UP:
                         game.rotate()
@@ -74,7 +74,7 @@ def main_game_loop():
                 if event.key == pygame.K_DOWN:
                     down_pressed = False
                     # Restaurar a velocidade de queda normal
-                    fall_speed = 1000  # 1000 milissegundos
+                    fall_speed = 300  
                     pygame.time.set_timer(GAME_UPDATE, fall_speed)
             if event.type == GAME_UPDATE and not game.game_over:
                 # Se a seta para baixo está pressionada continuamente, mover para baixo
